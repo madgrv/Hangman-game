@@ -7,7 +7,6 @@ Hangman is a classic word guessing game. This React-based application allows use
 ## Features
 
 - **Interactive Keyboard**: On-screen keyboard for letter selection.
-- **Guess Feedback**: Visual representation of correct and incorrect guesses.
 - **Hangman Image**: Updated hangman drawing with each incorrect guess.
 - **Attempt Counter**: Displays the number of remaining attempts.
 - **New Game Button**: Resets the game and generates a new word to guess.
@@ -16,7 +15,7 @@ Hangman is a classic word guessing game. This React-based application allows use
 ## Installation
 
 1. **Clone the Repository**:  
-   `git clone https://github.com/yourusername/hangman-game.git`
+   `git clone https://github.com/madgrv/hangman-game.git`
 
 2. **Navigate to the Project Directory**:  
    `cd hangman-game`
@@ -47,10 +46,6 @@ Hangman is a classic word guessing game. This React-based application allows use
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request or open an issue for any changes or fixes.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Contact
 
