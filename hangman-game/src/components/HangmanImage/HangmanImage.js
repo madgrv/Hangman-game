@@ -1,14 +1,18 @@
 import React from 'react';
 
-import image from '../../imgPaths.js';
+import imagePaths from '../../imgPaths.js';
 
-function HangmanImage() {
+function HangmanImage({ attemptsNum }) {
 	return (
 		<div className="img-wrapper">
 			<img
 				className="img"
-				src={image.image3}
-				alt={`Hangman image stage ${3} of 11`}
+				src={
+					attemptsNum <= 10
+						? imagePaths['image' + attemptsNum]
+						: imagePaths.image10
+				}
+				alt={`Hangman stage ${attemptsNum} of 10`}
 			/>
 		</div>
 	);
