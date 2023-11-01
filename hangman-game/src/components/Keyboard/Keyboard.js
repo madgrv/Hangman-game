@@ -19,8 +19,11 @@ function Keyboard({ guess, setGuess, count, setCount, word }) {
 			return;
 		}
 
+		// Update state in parent component with current value
 		const nextGuess = [...guess, letter];
 		setGuess(nextGuess);
+
+		// Update counter in parent component
 		const nextcount = count + 1;
 		setCount(nextcount);
 	}
