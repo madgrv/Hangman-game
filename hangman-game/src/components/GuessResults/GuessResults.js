@@ -1,9 +1,9 @@
 import React from 'react';
 
-function GuessResults({ guess }) {
+function GuessResults({ guess, word }) {
 	return (
 		<div>
-			<p>{guess}</p>
+			<p>{`remaining letters: ${word.length - guess.length}`}</p>
 		</div>
 	);
 }

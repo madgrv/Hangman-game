@@ -1,5 +1,6 @@
 import React from 'react';
 import { sample } from '../../utils';
+import { checkGuess } from '../../utils';
 import { WORDS } from '../../data';
 
 // import GuessInput from '../GuessInput';
@@ -7,13 +8,14 @@ import HangmanImage from '../HangmanImage';
 import GuessResult from '../GuessResults';
 import Keyboard from '../Keyboard/Keyboard';
 import NewGame from '../NewGame';
+import ResultDisplay from '../ResultDisplay/ResultDisplay';
 
 function Game() {
 	// Store the word to be guessed in state to be able to reset the game
 	const [word, setWord] = React.useState(sample(WORDS));
 	const [guess, setGuess] = React.useState([]);
 	// Track the number of attempts to update the images
-	const [attemptsNum, setAttemptsNum] = React.useState(0);
+	const [count, setCount] = React.useState(0);
 
 	// Use useEffect to log the word only when it changes
 	React.useEffect(() => {
@@ -24,21 +26,25 @@ function Game() {
 	// A function to reset and start a new game
 	function resetGame() {
 		setGuess([]);
-		setAttemptsNum(0);
+		setCount(0);
 		setWord(sample(WORDS));
 	}
 
 	return (
 		<div>
-			<HangmanImage attemptsNum={attemptsNum} />
-			<GuessResult guess={guess} /> <p>{attemptsNum}</p>
+			<HangmanImage count={count} />
+			<ResultDisplay guess={guess} answer={word} />
+			<GuessResult guess={guess} word={word} />{' '}
+			<p>{`Word length: ${word.length}`}</p>
 			<Keyboard
 				guess={guess}
 				setGuess={setGuess}
-				attemptsNum={attemptsNum}
-				setAttemptsNum={setAttemptsNum}
+				count={count}
+				setCount={setCount}
+				word={word}
 			/>
-			{attemptsNum === 10 && <NewGame resetGame={resetGame} />}
+			{/* conditionally show the new game button at the end of the game */}
+			{count === word.length && <NewGame resetGame={resetGame} />}
 		</div>
 	);
 }
