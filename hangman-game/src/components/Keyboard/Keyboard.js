@@ -45,6 +45,11 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 	React.useEffect(() => {
 		// Enable the event listener only for the allowed keys
 		const handleKeyDown = (event) => {
+			// Immediately exit if no guesses remain, or the game is not running
+			if (count.remaining === 0 || gameStatus !== 'running') {
+				return;
+			}
+
 			const key = event.key.toUpperCase();
 			if (
 				((key >= 'A' && key <= 'Z') || key === 'BACKSPACE') &&
