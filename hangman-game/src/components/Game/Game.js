@@ -33,6 +33,7 @@ function Game() {
 		}
 	}, [guess, word]);
 
+	// Check and update gameStatus state
 	React.useEffect(() => {
 		if (count.remaining === 0) {
 			setGameStatus('lost');
@@ -55,9 +56,7 @@ function Game() {
 		<div>
 			<HangmanImage word={word} count={count} />
 			<ResultDisplay result={result} answer={word} />
-			<GuessResult count={count} />
-			<p>{`Word length: ${word.length}`}</p>
-			<p>{`counters = Count: ${count.count} Remaining: ${count.remaining}`}</p>
+			<GuessResult count={count} word={word} />
 			<Keyboard
 				guess={guess}
 				setGuess={setGuess}
@@ -66,7 +65,7 @@ function Game() {
 				word={word}
 				gameStatus={gameStatus}
 			/>
-			{/* conditionally show the new game button at the end of the game */}
+			{/* conditionally show the new game button and winning condition at the end of the game */}
 			{(gameStatus === 'won' || gameStatus === 'lost') && (
 				<NewGame resetGame={resetGame} />
 			)}

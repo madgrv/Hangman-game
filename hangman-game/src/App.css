@@ -65,7 +65,8 @@ html {
 header {
 	display: flex;
 	height: var(--header-height);
-	border-bottom: 1px solid var(--color-gray-700);
+	padding-bottom: 5vh;
+	/* border-bottom: 2px solid var(--color-gray-700); */
 	color: var(--color-gray-300);
 }
 
@@ -164,6 +165,7 @@ h1 {
 	border-radius: 6px;
 	font-size: 2rem;
 	transition: 0.1s;
+	color: var(--color-gray-200);
 }
 .backspace {
 	background-color: rgba(255, 19, 19, 0.639);
@@ -194,7 +196,15 @@ h1 {
 	/* background-color: var(--color-gray-700); */
 }
 
-.guess-input-wrapper {
+.result-display {
+	display: flex;
+	margin: auto;
+	padding: 10px 10px 18px 10px;
+	justify-content: space-between;
+	color: var(--color-gray-300);
+}
+
+/* .guess-input-wrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
@@ -213,7 +223,7 @@ h1 {
 	border-radius: 4px;
 	padding: 8px 16px;
 	outline-offset: 4px;
-}
+} */
 
 .disabled-div {
 	pointer-events: none; /* Prevents click events */
