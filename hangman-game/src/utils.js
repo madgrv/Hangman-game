@@ -39,3 +39,10 @@ export const range = (start, end, step = 1) => {
 	}
 	return output;
 };
+
+// let count = { count: 0, remaining: 10 };
+
+// count.remaining -= 1;
+// count.count += 1;
+
+// console.table(count);

@@ -1,9 +1,7 @@
 import React from 'react';
 import { sample } from '../../utils';
-import { checkGuess } from '../../utils';
 import { WORDS } from '../../data';
 
-// import GuessInput from '../GuessInput';
 import HangmanImage from '../HangmanImage';
 import GuessResult from '../GuessResults';
 import Keyboard from '../Keyboard/Keyboard';
@@ -15,7 +13,8 @@ function Game() {
 	const [word, setWord] = React.useState(sample(WORDS));
 	const [guess, setGuess] = React.useState([]);
 	// Track the number of attempts to update the images
-	const [count, setCount] = React.useState(0);
+	const [count, setCount] = React.useState({ count: 0, remaining: 10 });
+	const [result, setResult] = React.useState(Array(word.length).fill('_'));
 
 	// Use useEffect to log the word only when it changes
 	React.useEffect(() => {
@@ -23,19 +22,31 @@ function Game() {
 	}, [word]); // The second argument is an array of dependencies.
 	// The effect will only run when the values in this array change.
 
+	React.useEffect(() => {
+		if (guess.length > 0) {
+			const nextResult = word
+				.split('')
+				.map((letter) => (guess.includes(letter) ? letter : '_'));
+			setResult(nextResult);
+		}
+	}, [guess, word]);
+
 	// A function to reset and start a new game
 	function resetGame() {
+		const nextWord = sample(WORDS);
+		setWord(nextWord);
 		setGuess([]);
-		setCount(0);
-		setWord(sample(WORDS));
+		setCount({ count: 0, remaining: 10 });
+		setResult(Array(nextWord.length).fill('_'));
 	}
 
 	return (
 		<div>
-			<HangmanImage count={count} />
-			<ResultDisplay guess={guess} answer={word} />
-			<GuessResult guess={guess} word={word} />{' '}
+			<HangmanImage word={word} count={count} />
+			<ResultDisplay result={result} answer={word} />
+			<GuessResult count={count} />
 			<p>{`Word length: ${word.length}`}</p>
+			<p>{`counters = Count: ${count.count} Remaining: ${count.remaining}`}</p>
 			<Keyboard
 				guess={guess}
 				setGuess={setGuess}
@@ -44,7 +55,10 @@ function Game() {
 				word={word}
 			/>
 			{/* conditionally show the new game button at the end of the game */}
-			{count === word.length && <NewGame resetGame={resetGame} />}
+			{(count === word.length || !result.includes('_')) && (
+				<NewGame resetGame={resetGame} />
+			)}
+			<NewGame resetGame={resetGame} />
 		</div>
 	);
 }

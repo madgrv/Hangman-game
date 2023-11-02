@@ -7,15 +7,17 @@ function Keyboard({ guess, setGuess, count, setCount, word }) {
 
 	function handleLetterClick(letter) {
 		// Delete functionality for the Practise Mode with early return checks
-		if (letter === 'backspace' && count >= 1) {
-			const nextcount = count - 1;
-			setCount(nextcount);
+		if (letter === 'backspace' && count.count >= 1) {
+			setCount((prev) => ({
+				count: prev.count - 1,
+				remaining: prev.remaining + 1,
+			}));
 
 			const nextGuess = [...guess];
 			nextGuess.pop();
 			setGuess(nextGuess);
 			return;
-		} else if (letter === 'backspace' && count <= 0) {
+		} else if (letter === 'backspace' && count.count <= 0) {
 			return;
 		}
 
@@ -24,13 +26,24 @@ function Keyboard({ guess, setGuess, count, setCount, word }) {
 		setGuess(nextGuess);
 
 		// Update counter in parent component
-		const nextcount = count + 1;
-		setCount(nextcount);
+		if (!word.includes(letter)) {
+			setCount((prev) => ({
+				count: prev.count + 1,
+				remaining: prev.remaining - 1,
+			}));
+		} else if (word.includes(letter) && !guess.includes(letter)) {
+			setCount((prev) => ({
+				count: prev.count + 1,
+				remaining: prev.remaining,
+			}));
+		} else {
+			return;
+		}
 	}
 
 	return (
 		<div
-			className={`key-wrapper${count >= word.length ? ' disabled-div' : ''}`}
+			className={`key-wrapper${count.remaining === 0 ? ' disabled-div' : ''}`}
 		>
 			<div className="key-row">
 				{lettersTop.map((lett) => (
@@ -69,7 +82,8 @@ function Keyboard({ guess, setGuess, count, setCount, word }) {
 					className="key-cell backspace"
 					onClick={() => handleLetterClick('backspace')}
 				>
-					{'←'}
+					{/* {'←'} */}
+					{'↩'}
 				</div>
 			</div>
 		</div>

@@ -1,17 +1,12 @@
 import React from 'react';
-import { checkGuess, range } from '../../utils';
 
-function ResultDisplay({ guess, answer }) {
-	const result = checkGuess(guess[guess.length - 1], answer);
-	// console.log(result);
-
+function ResultDisplay({ result }) {
 	return (
 		<div className="guess-results">
-			{range(answer.length).map((index) => {
+			{result.map((letter, index) => {
 				return (
 					<span key={index} className="cell">
-						{/* {index === result[index] ? result[index] : undefined} */}
-						{result[index]}
+						{letter}
 					</span>
 				);
 			})}
