@@ -242,3 +242,12 @@ h1 {
 .new-game:active {
 	transform: scale(1);
 }
+
+.happy.banner {
+	background: var(--color-success);
+	color: white;
+}
+.sad.banner {
+	background: var(--color-error);
+	color: white;
+}

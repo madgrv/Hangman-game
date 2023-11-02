@@ -7,6 +7,7 @@ import GuessResult from '../GuessResults';
 import Keyboard from '../Keyboard/Keyboard';
 import NewGame from '../NewGame';
 import ResultDisplay from '../ResultDisplay/ResultDisplay';
+import Banner from '../Banner/Banner';
 
 function Game() {
 	// Store the word to be guessed in state to be able to reset the game
@@ -15,6 +16,7 @@ function Game() {
 	// Track the number of attempts to update the images
 	const [count, setCount] = React.useState({ count: 0, remaining: 10 });
 	const [result, setResult] = React.useState(Array(word.length).fill('_'));
+	const [gameStatus, setGameStatus] = React.useState('running');
 
 	// Use useEffect to log the word only when it changes
 	React.useEffect(() => {
@@ -31,6 +33,14 @@ function Game() {
 		}
 	}, [guess, word]);
 
+	React.useEffect(() => {
+		if (count.remaining === 0) {
+			setGameStatus('lost');
+		} else if (!result.includes('_')) {
+			setGameStatus('won');
+		}
+	}, [count, result]);
+
 	// A function to reset and start a new game
 	function resetGame() {
 		const nextWord = sample(WORDS);
@@ -38,6 +48,7 @@ function Game() {
 		setGuess([]);
 		setCount({ count: 0, remaining: 10 });
 		setResult(Array(nextWord.length).fill('_'));
+		setGameStatus('running');
 	}
 
 	return (
@@ -53,12 +64,15 @@ function Game() {
 				count={count}
 				setCount={setCount}
 				word={word}
+				gameStatus={gameStatus}
 			/>
 			{/* conditionally show the new game button at the end of the game */}
-			{(count.remaining === 0 || !result.includes('_')) && (
+			{(gameStatus === 'won' || gameStatus === 'lost') && (
 				<NewGame resetGame={resetGame} />
 			)}
-			{/* <NewGame resetGame={resetGame} /> */}
+			{(gameStatus === 'won' || gameStatus === 'lost') && (
+				<Banner gameStatus={gameStatus} word={word} count={count} />
+			)}
 		</div>
 	);
 }

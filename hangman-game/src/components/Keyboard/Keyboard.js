@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Keyboard({ guess, setGuess, count, setCount, word }) {
+function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 	const lettersTop = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
 	const lettersMid = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
 	const lettersBott = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
@@ -41,9 +41,31 @@ function Keyboard({ guess, setGuess, count, setCount, word }) {
 		}
 	}
 
+	// Add event listener to enable input by typing on the keyboard
+	React.useEffect(() => {
+		// Enable the event listener only for the allowed keys
+		const handleKeyDown = (event) => {
+			const key = event.key.toUpperCase();
+			if (
+				((key >= 'A' && key <= 'Z') || key === 'BACKSPACE') &&
+				gameStatus === 'running'
+			) {
+				handleLetterClick(key === 'BACKSPACE' ? 'backspace' : key);
+			}
+		};
+
+		document.addEventListener('keydown', handleKeyDown);
+		return () => {
+			document.removeEventListener('keydown', handleKeyDown);
+		};
+	}, [guess, count, word]);
+
 	return (
 		<div
-			className={`key-wrapper${count.remaining === 0 ? ' disabled-div' : ''}`}
+			// className={`key-wrapper${count.remaining === 0 ? ' disabled-div' : ''}`}
+			className={`key-wrapper${
+				gameStatus !== 'running' ? ' disabled-div' : ''
+			}`}
 		>
 			<div className="key-row">
 				{lettersTop.map((lett) => (
