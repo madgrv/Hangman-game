@@ -49,4 +49,4 @@ Contributions are welcome! Please feel free to submit a Pull Request or open an 
 
 ## Contact
 
-If you have any questions or feedback, please contact [your email] or open an issue in the repository.
+If you have any questions or feedback, please contact me or open an issue in the repository.
