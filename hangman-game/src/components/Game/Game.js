@@ -55,10 +55,10 @@ function Game() {
 				word={word}
 			/>
 			{/* conditionally show the new game button at the end of the game */}
-			{(count === word.length || !result.includes('_')) && (
+			{(count.remaining === 0 || !result.includes('_')) && (
 				<NewGame resetGame={resetGame} />
 			)}
-			<NewGame resetGame={resetGame} />
+			{/* <NewGame resetGame={resetGame} /> */}
 		</div>
 	);
 }
