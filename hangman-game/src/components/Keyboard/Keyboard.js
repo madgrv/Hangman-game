@@ -27,15 +27,19 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 
 		// Update counter in parent component
 		if (!word.includes(letter)) {
-			setCount((prev) => ({
-				count: prev.count + 1,
-				remaining: prev.remaining - 1,
-			}));
+			const nextCount = {
+				...count,
+				count: count.count + 1,
+				remaining: count.remaining - 1,
+			};
+			setCount(nextCount);
 		} else if (word.includes(letter) && !guess.includes(letter)) {
-			setCount((prev) => ({
-				count: prev.count + 1,
-				remaining: prev.remaining,
-			}));
+			const nextCount = {
+				...count,
+				count: count.count + 1,
+				// remaining: count.remaining,
+			};
+			setCount(nextCount);
 		} else {
 			return;
 		}
@@ -76,7 +80,9 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 				{lettersTop.map((lett) => (
 					<div
 						key={lett}
-						className="key-cell"
+						className={`key-cell ${
+							guess.includes(lett) && word.includes(lett) ? 'guessed' : ''
+						} ${guess.includes(lett) && !word.includes(lett) ? 'wrong' : ''}`}
 						onClick={() => handleLetterClick(lett)}
 					>
 						{lett}
@@ -87,7 +93,9 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 				{lettersMid.map((lett) => (
 					<div
 						key={lett}
-						className="key-cell"
+						className={`key-cell ${
+							guess.includes(lett) && word.includes(lett) ? 'guessed' : ''
+						} ${guess.includes(lett) && !word.includes(lett) ? 'wrong' : ''}`}
 						onClick={() => handleLetterClick(lett)}
 					>
 						{lett}
@@ -98,7 +106,9 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 				{lettersBott.map((lett) => (
 					<div
 						key={lett}
-						className="key-cell"
+						className={`key-cell ${
+							guess.includes(lett) && word.includes(lett) ? 'guessed' : ''
+						} ${guess.includes(lett) && !word.includes(lett) ? 'wrong' : ''}`}
 						onClick={() => handleLetterClick(lett)}
 					>
 						{lett}

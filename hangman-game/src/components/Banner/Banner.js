@@ -6,7 +6,9 @@ function Banner({ gameStatus, word, count }) {
 			{gameStatus === 'won' ? (
 				<div className="happy banner">
 					<p>
-						<strong>Congratulations!</strong> Got it in{' '}
+						<h2>Congratulations!</h2>
+						<br />
+						Got it in{' '}
 						<strong>
 							{count.count > 1
 								? count.count + ' guesses'
@@ -17,7 +19,9 @@ function Banner({ gameStatus, word, count }) {
 			) : (
 				<div className="sad banner">
 					<p>
-						Game Over! The correct answer is <strong>{`"${word}"`}</strong>.
+						<h2>Game Over!</h2>
+						<br />
+						The correct answer is <strong>{`"${word}"`}</strong>.
 					</p>
 				</div>
 			)}

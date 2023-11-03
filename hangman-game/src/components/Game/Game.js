@@ -72,9 +72,10 @@ function Game() {
 				gameStatus={gameStatus}
 			/>
 			{/* conditionally show the new game button at the end of the game */}
-			{(gameStatus === 'won' || gameStatus === 'lost') && (
+			{/* {(gameStatus === 'won' || gameStatus === 'lost') && (
 				<NewGame resetGame={resetGame} />
-			)}
+			)} */}
+			<NewGame resetGame={resetGame} />
 		</div>
 	);
 }

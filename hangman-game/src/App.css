@@ -27,8 +27,11 @@ html {
 	--color-success: hsl(150deg 70% 30%);
 	--color-warning: hsl(50deg 100% 30%);
 	--color-error: hsl(0deg 70% 45%);
+	--color-guessed: hsla(155, 70%, 30%, 0.7);
+	--color-wrong: hsla(356, 100%, 47%, 0.5);
 	--color-gray-100: hsl(0deg 0% 10%);
 	--color-gray-300: hsl(0deg 0% 25%);
+	--color-gray-400: hsl(0deg 0% 40%);
 	--color-gray-500: hsl(0deg 0% 50%);
 	--color-gray-600: hsl(0deg 0% 65%);
 	--color-gray-700: hsl(0deg 0% 75%);
@@ -170,18 +173,30 @@ h1 {
 	/* background-color: var(--color-gray-700); */
 }
 
+.guessed,
+.guessed:hover,
+.guessed:active {
+	background-color: var(--color-guessed);
+}
+
+.wrong,
+.wrong:hover,
+.wrong.active {
+	background-color: var(--color-wrong);
+}
+
 .backspace {
-	background-color: hsla(345, 100%, 47%, 0.8);
+	/* background-color: hsla(345, 100%, 47%, 0.8); */
+	background-color: var(--color-gray-400);
 	margin-left: 6px;
 }
 
 .backspace:hover {
-	background-color: hsla(345, 100%, 47%, 0.7) !important;
-	box-shadow: 0px 3px 3px 0px hsl(340deg 100% 32%) !important;
+	/* background-color: hsla(345, 100%, 47%, 0.7) !important; */
+	background-color: var(--color-gray-400);
 }
 
 .backspace:active {
-	box-shadow: 0px 0px 1px 0px hsla(340, 100%, 32%, 0.8) !important;
 	transition: 0.1s;
 }
 
@@ -260,27 +275,26 @@ h1 {
 	transition: transform 34ms;
 }
 
-.happy.banner {
+.banner {
 	position: absolute;
-	/* display: flex; */
 	z-index: 1;
-	margin: auto;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	padding: 8vw;
 	border-radius: 8px;
-	background: var(--color-success);
 	color: white;
 	opacity: 95%;
-	box-shadow: 0px 10px 15px 2px hsla(150, 71%, 19%, 0.6);
+	box-shadow: 0px 10px 15px 2px rgba(13, 84, 48, 0.6);
 }
-.sad.banner {
-	position: absolute;
-	/* display: flex; */
-	margin: auto;
-	z-index: 1;
-	padding: 5vw;
-	border-radius: 8px;
+
+.happy {
+	background: var(--color-success);
+}
+
+.sad {
 	background: var(--color-error);
-	color: white;
-	opacity: 95%;
-	box-shadow: 0px 10px 15px 2px hsla(0, 71%, 19%, 0.5);
 }
