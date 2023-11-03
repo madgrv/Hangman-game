@@ -8,12 +8,13 @@ function Banner({ gameStatus, word, count }) {
 					<div>
 						<h2>Congratulations!</h2>
 						<br />
-						The word is <strong>"{word}"</strong>
-						<br />
-						<br />
 						You got it{' '}
 						<strong>
 							{count.count + 1 === word.length ? 'with NO MISTAKES!!!' : `!`}
+							<br />
+							<br />
+							The word is <strong>"{word}"</strong>
+							<br />
 						</strong>
 					</div>
 				</div>
