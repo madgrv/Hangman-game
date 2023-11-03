@@ -5,24 +5,27 @@ function Banner({ gameStatus, word, count }) {
 		<div>
 			{gameStatus === 'won' ? (
 				<div className="happy banner">
-					<p>
+					<div>
 						<h2>Congratulations!</h2>
+						<br />
+						The word is <strong>"{word}"</strong>
+						<br />
 						<br />
 						Got it in{' '}
 						<strong>
-							{count.count > 1
-								? count.count + ' guesses'
-								: count.count + ' guess'}
+							{count.count === word.length
+								? '1 guess!!! Psychic!!!'
+								: count.count + ' guesses'}
 						</strong>
-					</p>
+					</div>
 				</div>
 			) : (
 				<div className="sad banner">
-					<p>
+					<div>
 						<h2>Game Over!</h2>
 						<br />
 						The correct answer is <strong>{`"${word}"`}</strong>.
-					</p>
+					</div>
 				</div>
 			)}
 		</div>
