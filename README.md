@@ -11,6 +11,7 @@ Hangman is a classic word guessing game. This React-based application allows use
 - **Attempt Counter**: Displays the number of remaining attempts.
 - **New Game Button**: Resets the game and generates a new word to guess.
 - **Responsive Design**: Optimized for desktop and mobile viewing.
+- **Dynamic Guess Feedback**: The UI reflects the current state, updating guesses and remaining attempts in real time.
 
 ## Installation
 
