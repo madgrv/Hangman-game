@@ -17,8 +17,7 @@ function Banner({ gameStatus, word, count }) {
 			) : (
 				<div className="sad banner">
 					<p>
-						Game Over! Sorry, the correct answer is{' '}
-						<strong>{`"${word}"`}</strong>.
+						Game Over! The correct answer is <strong>{`"${word}"`}</strong>.
 					</p>
 				</div>
 			)}

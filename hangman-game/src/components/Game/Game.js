@@ -75,7 +75,6 @@ function Game() {
 			{(gameStatus === 'won' || gameStatus === 'lost') && (
 				<NewGame resetGame={resetGame} />
 			)}
-			<NewGame resetGame={resetGame} />
 		</div>
 	);
 }
