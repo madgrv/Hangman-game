@@ -11,11 +11,11 @@ function Banner({ gameStatus, word, count }) {
 						The word is <strong>"{word}"</strong>
 						<br />
 						<br />
-						Got it in{' '}
+						Got it{' '}
 						<strong>
-							{count.count === word.length
-								? '1 guess!!! Psychic!!!'
-								: count.count + ' guesses'}
+							{count.count + 1 === word.length
+								? 'with NO MISTAKES!!!'
+								: `in ${count.count} guesses`}
 						</strong>
 					</div>
 				</div>
