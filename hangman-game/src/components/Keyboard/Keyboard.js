@@ -37,7 +37,6 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 			const nextCount = {
 				...count,
 				count: count.count + 1,
-				// remaining: count.remaining,
 			};
 			setCount(nextCount);
 		} else {
@@ -45,6 +44,7 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 		}
 	}
 
+	// This needs to be debugged properly:
 	// Add event listener to enable input by typing on the keyboard
 	React.useEffect(() => {
 		// Enable the event listener only for the allowed keys
@@ -68,10 +68,10 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 			document.removeEventListener('keydown', handleKeyDown);
 		};
 	}, [guess, count, word]);
+	////
 
 	return (
 		<div
-			// className={`key-wrapper${count.remaining === 0 ? ' disabled-div' : ''}`}
 			className={`key-wrapper${
 				gameStatus !== 'running' ? ' disabled-div' : ''
 			}`}
@@ -82,7 +82,9 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 						key={lett}
 						className={`key-cell ${
 							guess.includes(lett) && word.includes(lett) ? 'guessed' : ''
-						} ${guess.includes(lett) && !word.includes(lett) ? 'wrong' : ''}`}
+						} ${
+							guess.includes(lett) && !word.includes(lett) ? 'disabled-div' : ''
+						}`}
 						onClick={() => handleLetterClick(lett)}
 					>
 						{lett}
@@ -95,7 +97,9 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 						key={lett}
 						className={`key-cell ${
 							guess.includes(lett) && word.includes(lett) ? 'guessed' : ''
-						} ${guess.includes(lett) && !word.includes(lett) ? 'wrong' : ''}`}
+						} ${
+							guess.includes(lett) && !word.includes(lett) ? 'disabled-div' : ''
+						}`}
 						onClick={() => handleLetterClick(lett)}
 					>
 						{lett}
@@ -108,7 +112,9 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 						key={lett}
 						className={`key-cell ${
 							guess.includes(lett) && word.includes(lett) ? 'guessed' : ''
-						} ${guess.includes(lett) && !word.includes(lett) ? 'wrong' : ''}`}
+						} ${
+							guess.includes(lett) && !word.includes(lett) ? 'disabled-div' : ''
+						}`}
 						onClick={() => handleLetterClick(lett)}
 					>
 						{lett}
@@ -120,7 +126,6 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 					onClick={() => handleLetterClick('backspace')}
 				>
 					{'←'}
-					{/* {'↩'} */}
 				</div>
 			</div>
 		</div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import imagePaths from '../../imgPaths.js';
 
-function HangmanImage({ word, count }) {
+function HangmanImage({ count }) {
 	const countdown = 10 - count.remaining;
 
 	return (
