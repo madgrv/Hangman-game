@@ -204,15 +204,30 @@ h1 {
 	display: flex;
 	margin: auto;
 	margin-top: 18px;
+	box-shadow: 5px 5px 1px rgba(128, 128, 128, 0.7);
+	transition: 200ms;
 }
 
 .new-game:hover {
 	cursor: pointer;
+	box-shadow: 6px 6px 1px rgba(128, 128, 128, 0.7);
+}
+
+.new-game:active {
+	box-shadow: 3px 3px 1px rgba(128, 128, 128, 0.8);
+	transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 }
 
 .pushable {
 	/* background: hsl(160, 100%, 24%); */
-	background: hsl(340deg 100% 32%);
+	/* background: hsl(340deg 100% 32%); */
+	background: linear-gradient(
+		to left,
+		hsl(340deg 100% 16%) 0%,
+		hsl(340deg 100% 32%) 8%,
+		hsl(340deg 100% 32%) 92%,
+		hsla(340, 100%, 16%, 0.136) 100%
+	);
 	border-radius: 12px;
 	border: none;
 	padding: 0;
