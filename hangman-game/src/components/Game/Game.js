@@ -45,15 +45,21 @@ function Game() {
 	// A function to reset and start a new game
 	function resetGame() {
 		const nextWord = sample(WORDS);
-		setWord(nextWord);
-		setGuess([]);
-		setCount({ count: 0, remaining: 10 });
-		setResult(Array(nextWord.length).fill('_'));
-		setGameStatus('running');
+		// Delayed action to allow button animation to complete
+		setTimeout(() => {
+			setWord(nextWord);
+			setGuess([]);
+			setCount({ count: 0, remaining: 10 });
+			setResult(Array(nextWord.length).fill('_'));
+			setGameStatus('running');
+		}, 400);
 	}
 
 	return (
 		<div>
+			{(gameStatus === 'won' || gameStatus === 'lost') && (
+				<Banner gameStatus={gameStatus} word={word} count={count} />
+			)}
 			<HangmanImage word={word} count={count} />
 			<ResultDisplay result={result} answer={word} />
 			<GuessResult count={count} word={word} />
@@ -65,12 +71,9 @@ function Game() {
 				word={word}
 				gameStatus={gameStatus}
 			/>
-			{/* conditionally show the new game button and winning condition at the end of the game */}
+			{/* conditionally show the new game button at the end of the game */}
 			{(gameStatus === 'won' || gameStatus === 'lost') && (
 				<NewGame resetGame={resetGame} />
-			)}
-			{(gameStatus === 'won' || gameStatus === 'lost') && (
-				<Banner gameStatus={gameStatus} word={word} count={count} />
 			)}
 		</div>
 	);

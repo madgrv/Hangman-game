@@ -109,8 +109,8 @@ function Keyboard({ guess, setGuess, count, setCount, word, gameStatus }) {
 					className="key-cell backspace"
 					onClick={() => handleLetterClick('backspace')}
 				>
-					{/* {'←'} */}
-					{'↩'}
+					{'←'}
+					{/* {'↩'} */}
 				</div>
 			</div>
 		</div>
