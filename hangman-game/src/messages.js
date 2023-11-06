@@ -16,11 +16,12 @@ export const messages = {
         deduce a hidden word by guessing one letter at a time. The game begins with 
         a series of blanks representing each letter of the word. Players guess 
         letters one at a time, and if the guessed letter is in the word, it is revealed 
-        in its correct position(s). If the letter is not in the word, a part of the hangman 
-        is drawn. The player continues to guess letters until either the word is fully revealed,
-        or the hangman is completely drawn, which results in a loss. The hangman consists of a 
-        predetermined number of parts, which typically includes the head, body, two arms, and 
-        two legs, for a total of ten incorrect guesses allowed before the game is over. 
+        in its correct position(s). 
+		If the letter is not in the word, a part of the hangman is drawn. The player continues 
+		to guess letters until either the word is fully revealed, or the hangman is completely 
+		drawn, which results in a loss. The hangman consists of a predetermined number of parts, 
+		which typically includes the head, body, two arms, and two legs, for a total of ten 
+		incorrect guesses allowed before the game is over. 
         
         The challenge is to guess the word before the hangman is finished to win the game. 
         
