@@ -2,6 +2,7 @@ import React from 'react';
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
 
+import Header from '../Header';
 import HangmanImage from '../HangmanImage';
 import GuessResult from '../GuessResults';
 import Keyboard from '../Keyboard/Keyboard';
@@ -17,6 +18,7 @@ function Game() {
 	const [count, setCount] = React.useState({ count: 0, remaining: 10 });
 	const [result, setResult] = React.useState(Array(word.length).fill('_'));
 	const [gameStatus, setGameStatus] = React.useState('running');
+	const [showRules, setShowRules] = React.useState(false);
 
 	// Use useEffect to log the word only when it changes
 	React.useEffect(() => {
@@ -57,9 +59,16 @@ function Game() {
 
 	return (
 		<div>
+			<Header showRules={showRules} />
 			{(gameStatus === 'won' || gameStatus === 'lost') && (
-				<Banner gameStatus={gameStatus} word={word} count={count} />
+				<Banner
+					gameStatus={gameStatus}
+					setGameStatus={setGameStatus}
+					word={word}
+					count={count}
+				/>
 			)}
+			{/* {showRules && <Banner gameStatus={gameStatus} />} */}
 			<HangmanImage word={word} count={count} />
 			<ResultDisplay result={result} answer={word} />
 			<GuessResult count={count} word={word} />

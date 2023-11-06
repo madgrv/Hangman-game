@@ -1,32 +1,46 @@
 import React from 'react';
+import { messages } from '../../messages';
 
-function Banner({ gameStatus, word, count }) {
+function Banner({
+	gameStatus,
+	setGameStatus,
+	word,
+	count,
+	showRules,
+	setShowRules,
+}) {
+	const msg = messages;
+	const bannerType = gameStatus;
+
+	console.log(bannerType);
+
 	return (
 		<div>
-			{gameStatus === 'won' ? (
-				<div className="happy banner fade-in">
-					<div>
-						<h2>Congratulations!</h2>
+			<div className={`${bannerType} banner fade-in`}>
+				<div>
+					<h2>{msg[bannerType].title}</h2>
+					<br />
+					{msg[bannerType].subtitle}
+					<strong>
 						<br />
-						You got it{' '}
-						<strong>
-							{count.count === word.length ? 'with NO MISTAKES!!!' : `!`}
-							<br />
-							<br />
-							The word is <strong>"{word}"</strong>
-							<br />
-						</strong>
+						<br />
+						{msg[bannerType].answer}
+						{bannerType === 'info' ? '' : <strong>"{word}"</strong>}
+						<br />
+					</strong>
+					<br />
+					<div>
+						<button className="banner-close" onClick={() => setGameStatus('')}>
+							Close window
+						</button>
 					</div>
 				</div>
-			) : (
-				<div className="sad banner fade-in">
-					<div>
-						<h2>Game Over!</h2>
-						<br />
-						The correct answer was <strong>{`"${word}"`}</strong>.
-					</div>
-				</div>
-			)}
+			</div>
+			{/* {showRules && (
+				<button className="button pushable" onClick={() => setShowRules(false)}>
+					Close window
+				</button>
+			)} */}
 		</div>
 	);
 }
