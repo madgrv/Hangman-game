@@ -5,8 +5,6 @@ function Banner({ gameStatus, word, setShowBanner }) {
 	const msg = messages;
 	const bannerType = gameStatus === 'running' ? 'info' : gameStatus;
 
-	console.log(bannerType);
-
 	return (
 		<div>
 			<div className={`${bannerType} banner fade-in`}>
