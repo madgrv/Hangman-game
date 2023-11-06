@@ -4,7 +4,7 @@
 
 Hangman is a classic word guessing game. This React-based application allows users to play Hangman directly from their web browser. Players try to guess a hidden word by suggesting letters within a certain number of attempts. Each incorrect guess adds a part to the hangman drawing, and the game continues until the word is guessed correctly or the hangman drawing is complete.
 
-![Hangman game screenshot.png](./hangman-game/public/Hangman-screenshot.png)
+![Hangman game screenshot.png](./hangman-game/public/Hangman-screen-capture.gif)
 
 ## Features
 
