@@ -18,7 +18,7 @@ function Game() {
 	const [count, setCount] = React.useState({ count: 0, remaining: 10 });
 	const [result, setResult] = React.useState(Array(word.length).fill('_'));
 	const [gameStatus, setGameStatus] = React.useState('running');
-	const [showRules, setShowRules] = React.useState(false);
+	const [showBanner, setShowBanner] = React.useState(false);
 
 	// Use useEffect to log the word only when it changes
 	React.useEffect(() => {
@@ -39,8 +39,10 @@ function Game() {
 	React.useEffect(() => {
 		if (count.remaining === 0) {
 			setGameStatus('lost');
+			setShowBanner(true);
 		} else if (!result.includes('_')) {
 			setGameStatus('won');
+			setShowBanner(true);
 		}
 	}, [count, result]);
 
@@ -54,21 +56,25 @@ function Game() {
 			setCount({ count: 0, remaining: 10 });
 			setResult(Array(nextWord.length).fill('_'));
 			setGameStatus('running');
+			setShowBanner(false);
 		}, 400);
 	}
 
 	return (
 		<div>
-			<Header showRules={showRules} />
-			{(gameStatus === 'won' || gameStatus === 'lost') && (
+			<Header
+				showBanner={showBanner}
+				setShowBanner={setShowBanner}
+				setGameStatus={setGameStatus}
+			/>
+			{showBanner && (
 				<Banner
 					gameStatus={gameStatus}
 					setGameStatus={setGameStatus}
 					word={word}
-					count={count}
+					setShowBanner={setShowBanner}
 				/>
 			)}
-			{/* {showRules && <Banner gameStatus={gameStatus} />} */}
 			<HangmanImage word={word} count={count} />
 			<ResultDisplay result={result} answer={word} />
 			<GuessResult count={count} word={word} />
@@ -80,10 +86,6 @@ function Game() {
 				word={word}
 				gameStatus={gameStatus}
 			/>
-			{/* conditionally show the new game button at the end of the game */}
-			{/* {(gameStatus === 'won' || gameStatus === 'lost') && (
-				<NewGame resetGame={resetGame} />
-			)} */}
 			<NewGame resetGame={resetGame} />
 		</div>
 	);

@@ -1,16 +1,9 @@
 import React from 'react';
 import { messages } from '../../messages';
 
-function Banner({
-	gameStatus,
-	setGameStatus,
-	word,
-	count,
-	showRules,
-	setShowRules,
-}) {
+function Banner({ gameStatus, word, setShowBanner }) {
 	const msg = messages;
-	const bannerType = gameStatus;
+	const bannerType = gameStatus === 'running' ? 'info' : gameStatus;
 
 	console.log(bannerType);
 
@@ -20,27 +13,33 @@ function Banner({
 				<div>
 					<h2>{msg[bannerType].title}</h2>
 					<br />
-					{msg[bannerType].subtitle}
-					<strong>
-						<br />
-						<br />
-						{msg[bannerType].answer}
-						{bannerType === 'info' ? '' : <strong>"{word}"</strong>}
-						<br />
-					</strong>
-					<br />
 					<div>
-						<button className="banner-close" onClick={() => setGameStatus('')}>
+						<p>
+							{bannerType === 'info' ? (
+								<>
+									{msg[bannerType].answer.split('\n').map((line, index) => (
+										<React.Fragment key={index}>
+											{line}
+											<br />
+										</React.Fragment>
+									))}
+								</>
+							) : (
+								<>
+									<strong>{msg[bannerType].answer}</strong>
+									<strong>"{word}"</strong>
+								</>
+							)}
+						</p>
+						<button
+							className="banner-close"
+							onClick={() => setShowBanner(false)}
+						>
 							Close window
 						</button>
 					</div>
 				</div>
 			</div>
-			{/* {showRules && (
-				<button className="button pushable" onClick={() => setShowRules(false)}>
-					Close window
-				</button>
-			)} */}
 		</div>
 	);
 }

@@ -29,7 +29,7 @@ html {
 	--color-error: hsl(0deg 70% 45%);
 	--color-guessed: hsla(155, 70%, 30%, 0.7);
 	--color-wrong: hsla(356, 100%, 47%, 0.5);
-	--color-info: hsla(199, 100%, 47%, 0.5);
+	--color-info: hsl(216, 100%, 47%);
 	--color-gray-100: hsl(0deg 0% 10%);
 	--color-gray-300: hsl(0deg 0% 25%);
 	--color-gray-400: hsl(0deg 0% 40%);
@@ -90,6 +90,7 @@ h1 {
 	min-width: 250px;
 	max-width: min(500px, 58vh, 100%);
 	height: 250px;
+	position: relative;
 }
 
 .img-wrapper {
@@ -292,8 +293,9 @@ h1 {
 	padding: 8vw;
 	border-radius: 8px;
 	color: white;
-	opacity: 95%;
+	opacity: 0.95;
 	box-shadow: 0px 10px 15px 2px rgba(13, 84, 48, 0.6);
+	min-width: 200px;
 }
 
 .banner-close {
@@ -302,6 +304,7 @@ h1 {
 	background-color: transparent;
 	color: var(--color-gray-200);
 	cursor: pointer;
+	text-decoration: underline;
 }
 
 .won {
@@ -314,6 +317,7 @@ h1 {
 
 .info {
 	background: var(--color-info);
+	opacity: 97%;
 }
 
 .info-wrapper {
@@ -362,5 +366,5 @@ h1 {
 }
 
 .fade-in {
-	animation: fadeIn 1s ease-in-out;
+	animation: fadeIn 400ms ease-in-out;
 }
